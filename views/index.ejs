@@ -1,0 +1,160 @@
+<!-- Hero Section -->
+<section>
+  <section class="hero relative bg-blue-600 text-white py-20 overflow-hidden">
+    <div class="container">
+      <!-- Left Text Content -->
+      <div class="left-content">
+        <h1 class="heading">Drive Your Dream Car, No Hassle</h1>
+        <p class="sub-heading">
+          Premium rentals at your fingertips — reliable, affordable, and luxury
+          rides for every occasion.
+        </p>
+
+        <p class="sub-heading" style="margin-top: 20px; font-weight: bold">
+          Case Study of Owolabi Perfect Services & Multi-national Limited, Ede
+          Osun State.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="cta-buttons">
+          <a href="/login" class="register-btn"> Explore Our Fleet </a>
+        </div>
+      </div>
+
+      <!-- Right Hero Car Image -->
+      <div class="right-content">
+        <img src="/assets/car_2.png" alt="Luxury Car" class="hero-image" />
+      </div>
+    </div>
+  </section>
+  <!-- Featured Cars -->
+  <section class="section mx-auto px-6 py-20">
+    <h2 class="section-title">Our Featured Cars</h2>
+    <div class="grid">
+      <% vehicles.forEach(vehicle => { %>
+      <div class="car-card" tabindex="0" style="position: relative">
+        <img
+          src="<%= vehicle.image %>"
+          alt="<%= vehicle.model %>"
+          class="w-full h-52 object-cover"
+        />
+        <div
+          class="car-details"
+          style="
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 1rem 0.5rem 1rem;
+            box-sizing: border-box;
+          "
+        >
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">
+            <%= vehicle.model %>
+          </h3>
+          <p class="text-gray"><%= vehicle.type %></p>
+          <p class="text-blue-600 font-bold">₦<%= vehicle.price %>/day</p>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+  </section>
+  <!-- Why Choose Us -->
+  <section class="section bg-white" id="choose-us">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="section-title">Why Choose Us?</h2>
+      <div class="grid center-grid">
+        <div class="grid-2">
+          <div class="p-6 rounded-xl shadow">
+            <img
+              src="/assets/padlock.png"
+              alt="affordable rate"
+              class="card-icon"
+            />
+            <h3 class="text-xl font-semibold text-gray-700 mb-2">
+              Affordable Rates
+            </h3>
+            <p class="text-gray-600">
+              Best deals, transparent pricing, no hidden fees.
+            </p>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="p-6 rounded-xl shadow">
+            <img
+              src="/assets/padlock.png"
+              alt="affordable rate"
+              class="card-icon"
+            />
+            <h3 class="text-xl font-semibold text-gray-700 mb-2">
+              Affordable Rates
+            </h3>
+            <p class="text-gray-600">
+              Best deals, transparent pricing, no hidden fees.
+            </p>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="p-6 rounded-xl shadow">
+            <img
+              src="/assets/login.png"
+              alt="affordable rate"
+              class="card-icon"
+            />
+
+            <h3 class="text-xl font-semibold text-gray-700 mb-2">
+              Wide Range of Cars
+            </h3>
+            <p class="text-gray-600">
+              Sedans, SUVs, and luxury vehicles — all in one place.
+            </p>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="p-6 rounded-xl shadow">
+            <img
+              src="/assets/deadline.png"
+              alt="affordable rate"
+              class="card-icon"
+            />
+
+            <h3 class="text-xl font-semibold text-gray-700 mb-2">
+              24/7 Support
+            </h3>
+            <p class="text-gray-600">
+              Round-the-clock assistance for a smooth rental experience.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Call to Action -->
+  <section class="section bg-black flex">
+    <div class="cta-board">
+      <h2 class="text-3xl font-bold mb-4">Ready to Hit the Road?</h2>
+      <p class="mb-6">Register now and start driving your dream car today.</p>
+    </div>
+    <span class="cta-buttons">
+      <a href="/register" class="login-btn"> Get Started </a>
+    </span>
+  </section>
+
+  <!-- Custom Animation -->
+  <style>
+    @keyframes slideIn {
+      0% {
+        opacity: 0;
+        transform: translateX(80px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    .animate-slide-in {
+      animation: slideIn 1.2s ease-out forwards;
+    }
+  </style>
+</section>

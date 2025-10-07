@@ -1,0 +1,98 @@
+<div class="section register-form min-height">
+  <div class="bg-white form-container">
+    <div class="left">
+      <h2 class="section-title">Welcome Back</h2>
+      <form
+        id="login-form"
+        action="/api/users/login"
+        method="POST"
+        class="space-y-5"
+      >
+        <!-- Email -->
+        <div class="input-field">
+          <label class="block text-sm font-medium text-gray-700 mb-1"
+            >Email</label
+          >
+          <input
+            type="email"
+            name="email"
+            placeholder="john@example.com"
+            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            required
+          />
+        </div>
+        <!-- Password -->
+        <div class="input-field">
+          <label class="block text-sm font-medium text-gray-700 mb-1"
+            >Password</label
+          >
+          <input
+            type="password"
+            name="password"
+            placeholder="********"
+            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            required
+          />
+        </div>
+        <!-- Submit -->
+        <button id="login-btn" type="submit" class="register-btn">Login</button>
+        <div
+          id="login-msg"
+          style="margin-top: 8px; color: #d00; font-weight: 600"
+        ></div>
+      </form>
+      <p class="text-center text-sm text-gray-600 mt-6">
+        Don’t have an account?
+        <a href="/register" class="text-blue-600 hover:underline">Register</a>
+      </p>
+    </div>
+
+    <img src="/assets/car_4.jpg" />
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("login-form");
+    const btn = document.getElementById("login-btn");
+    const msg = document.getElementById("login-msg");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      msg.textContent = "";
+      btn.disabled = true;
+      const originalText = btn.textContent;
+      btn.textContent = "Logging in...";
+
+      const formData = new FormData(form);
+      const payload = Object.fromEntries(formData.entries());
+
+      try {
+        const res = await fetch(form.action, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "same-origin",
+          body: JSON.stringify(payload),
+        });
+
+        if (!res.ok) {
+          const errorData = await res.json();
+          throw new Error(errorData.msg || "Login failed");
+        }
+
+        const data = await res.json();
+
+        // Redirect based on role
+        if (data.role === "admin") {
+          window.location.href = "/dashboard"; // Redirect to admin dashboard
+        } else {
+          window.location.href = "/dashboard-customer"; // Redirect to user dashboard
+        }
+      } catch (err) {
+        msg.textContent = err.message || "An error occurred during login";
+        btn.disabled = false;
+        btn.textContent = originalText;
+      }
+    });
+  });
+</script>

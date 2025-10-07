@@ -1,0 +1,42 @@
+<section
+  class="settings-section section bg-white"
+  style="
+    max-width: 500px;
+    margin: 2rem auto;
+    border-radius: 1rem;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  "
+>
+  <h1 class="section-title" style="margin-bottom: 1.5rem">Settings</h1>
+  <form
+    action="/settings/update"
+    method="POST"
+    style="display: flex; flex-direction: column; gap: 1.2rem"
+  >
+    <div class="form-group input-field">
+      <label for="notification">Email Notifications</label>
+      <select
+        id="notification"
+        name="notification"
+        style="padding: 10px; border-radius: 0.5rem; border: 1.5px solid #ccc"
+      >
+        <option value="enabled">Enabled</option>
+        <option value="disabled">Disabled</option>
+      </select>
+    </div>
+    <div class="form-group input-field">
+      <label for="theme">Theme</label>
+      <select
+        id="theme"
+        name="theme"
+        style="padding: 10px; border-radius: 0.5rem; border: 1.5px solid #ccc"
+      >
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
+    </div>
+    <button type="submit" class="btn register-btn" style="margin-top: 0.5rem">
+      Save Settings
+    </button>
+  </form>
+</section>

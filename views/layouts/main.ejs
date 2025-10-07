@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= title || "Car Rental System" %></title>
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav>
+      <h1 class="brand">Autos</h1>
+      <ul class="nav-links">
+        <a href="/">Home</a>
+        <a href="/#">Services</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+      </ul>
+      <a href="/register" class="login-btn">Register</a>
+    </nav>
+
+    <!-- Page Content -->
+    <main><%- body %></main>
+
+    <!-- Footer -->
+    <footer class="">
+      <p>
+        &copy; <%= new Date().getFullYear() %> Car Rental System. All rights
+        reserved.
+      </p>
+    </footer>
+
+    <!-- Flowbite Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.5.1/flowbite.min.js"></script>
+  </body>
+</html>
