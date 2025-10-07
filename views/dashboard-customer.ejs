@@ -1,0 +1,51 @@
+<section class="customer-dashboard">
+  <header class="dash-header">
+    <div class="dash-title">
+      <h1>Your Bookings</h1>
+      <p class="muted">Manage your current and past bookings</p>
+    </div>
+  </header>
+
+  <section class="stat-tiles">
+    <div class="tile">
+      <h3>Total Vehicles</h3>
+      <p class="big">
+        <%= typeof totalVehicles !== 'undefined' ? totalVehicles : 'N/A' %>
+      </p>
+    </div>
+    <div class="tile">
+      <h3>Your Active Bookings</h3>
+      <p class="big">--</p>
+    </div>
+    <div class="tile">
+      <h3>Past Bookings</h3>
+      <p class="big">--</p>
+    </div>
+  </section>
+
+  <section class="vehicle-grid">
+    <% if (vehicles && vehicles.length) { %>
+    <div class="grid">
+      <% vehicles.forEach(vehicle => { %>
+      <a
+        href="/booking?carId=<%= vehicle.id %>"
+        class="car-card vehicle-card"
+        style="display: block; text-decoration: none; color: inherit"
+      >
+        <img
+          src="<%= vehicle.image || '/assets/car_1.jpg' %>"
+          alt="<%= vehicle.model %>"
+        />
+        <div class="car-details">
+          <h3><%= vehicle.model %></h3>
+          <p class="text-gray"><%= vehicle.type %></p>
+          <p class="text-blue-600 font-bold">₦<%= vehicle.price %>/day</p>
+        </div>
+      </a>
+      <% }) %>
+    </div>
+    <% } else { %>
+    <p>No vehicles found.</p>
+    <% } %>
+  </section>
+</section>

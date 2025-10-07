@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body class="dashboard flex">
+    <main class="sidebar">
+      <a href="/dashboard" class="brand">Autos</a>
+
+      <ul class="sidebar-nav">
+        <% if (userRole === 'admin') { %>
+        <li class="<%= currentPath === '/dashboard-admin' ? 'active' : '' %>">
+          <a href="/dashboard-admin" class="sidebar-link">Dashboard</a>
+        </li>
+        <li class="<%= currentPath === '/car-create' ? 'active' : '' %>">
+          <a href="/car-create" class="sidebar-link">Add Car</a>
+        </li>
+        <% } %> <% if (userRole === 'customer') { %>
+        <li
+          class="<%= currentPath === '/dashboard-customer' ? 'active' : '' %>"
+        >
+          <a href="/dashboard-customer" class="sidebar-link">Dashboard</a>
+        </li>
+        <li class="<%= currentPath === '/booking' ? 'active' : '' %>">
+          <a href="/booking" class="sidebar-link">Bookings</a>
+        </li>
+        <% } %>
+        <li class="<%= currentPath === '/profile' ? 'active' : '' %>">
+          <a href="/profile" class="sidebar-link">Profile</a>
+        </li>
+        <li class="<%= currentPath === '/settings' ? 'active' : '' %>">
+          <a href="/settings" class="sidebar-link">Settings</a>
+        </li>
+      </ul>
+
+      <button class="logout-btn">Logout</button>
+    </main>
+    <div class="main-content"><%- body %></div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const btn = document.querySelector(".logout-btn");
+
+        btn.addEventListener("click", async () => {
+          if (confirm("Are you sure you want to logout?")) {
+            await performLogout();
+          }
+        });
+      });
+
+      async function performLogout() {
+        try {
+          const res = await fetch("/api/users/logout", {
+            method: "POST",
+            credentials: "same-origin",
+          });
+
+          if (res.ok) {
+            window.location.href = "/login"; // Redirect to login on successful logout
+          } else {
+            alert("Logout failed");
+          }
+        } catch (err) {
+          console.error("Logout error:", err);
+          alert("An error occurred during logout");
+        }
+      }
+    </script>
+  </body>
+</html>

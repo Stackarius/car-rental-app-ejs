@@ -1,0 +1,98 @@
+<!-- Dashboard Header -->
+<header class="dash-header">
+  <div class="dash-title">
+    <h1>Dashboard</h1>
+    <p class="muted">Welcome back — manage your fleet and view stats</p>
+  </div>
+
+  <div class="dash-actions">
+    <div class="search-wrap">
+      <input
+        id="vehicle-search"
+        placeholder="Search vehicles by model or type"
+      />
+    </div>
+    <div class="filter-wrap">
+      <select id="vehicle-filter">
+        <option value="all">All</option>
+        <option value="available">Available</option>
+        <option value="rented">Rented</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<!-- Stat Tiles -->
+<section class="stat-tiles">
+  <div class="tile">
+    <h3>Total Vehicles</h3>
+    <p class="big">
+      <%= typeof totalVehicles !== 'undefined' ? totalVehicles : 'N/A' %>
+    </p>
+  </div>
+  <div class="tile">
+    <h3>Available</h3>
+    <p class="big">--</p>
+  </div>
+  <div class="tile">
+    <h3>Rented</h3>
+    <p class="big">--</p>
+  </div>
+</section>
+
+<!-- Vehicle Grid -->
+<section class="vehicle-grid">
+  <% if (vehicles && vehicles.length) { %>
+  <div class="grid">
+    <% vehicles.forEach(vehicle => { %>
+    <div class="car-card vehicle-card">
+      <img
+        src="<%= vehicle.image || '/assets/car_1.jpg' %>"
+        alt="<%= vehicle.model %>"
+      />
+      <div class="car-details">
+        <h3><%= vehicle.model %></h3>
+        <p class="text-gray"><%= vehicle.type %></p>
+        <p class="text-blue-600 font-bold">₦<%= vehicle.price %>/day</p>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+  <% } else { %>
+  <p>No vehicles found.</p>
+  <% } %>
+</section>
+
+<!-- search/filter -->
+<script>
+  (function () {
+    const search = document.getElementById("vehicle-search");
+    const filter = document.getElementById("vehicle-filter");
+    const cards = () => Array.from(document.querySelectorAll(".vehicle-card"));
+
+    function applyFilters() {
+      const q = search.value.trim().toLowerCase();
+      const f = filter.value;
+
+      cards().forEach((card) => {
+        const model =
+          card.querySelector("h3")?.textContent?.toLowerCase() || "";
+        const type =
+          card.querySelector(".text-gray")?.textContent?.toLowerCase() || "";
+
+        let visible = true;
+        if (q && !(model.includes(q) || type.includes(q))) visible = false;
+
+        // placeholder for status filter (requires server-provided status data)
+        if (f === "available" || f === "rented") {
+          // implement when vehicle.status exists on the card dataset
+        }
+
+        card.style.display = visible ? "" : "none";
+      });
+    }
+
+    search?.addEventListener("input", applyFilters);
+    filter?.addEventListener("change", applyFilters);
+  })();
+</script>

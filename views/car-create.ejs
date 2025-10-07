@@ -1,0 +1,136 @@
+<section
+  class="car-create-section section bg-white"
+  style="
+    max-width: 520px;
+    margin: 2rem auto;
+    border-radius: 1.2rem;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+    background: #fff;
+  "
+>
+    <h1
+      style="
+        margin-bottom: 1.2rem;
+        color: #111;
+        font-weight: 700;
+        letter-spacing: -1px;
+      "
+    >
+      Add a New Car
+    </h1>
+    <form
+      action="/admin/cars/create"
+      method="POST"
+      class="car-create-form"
+      style="display: flex; flex-direction: column; gap: 1.2rem; width: 100%"
+    >
+      <div class="form-group input-field">
+        <label for="model" style="color: #222; font-weight: 600">Model</label>
+        <input
+          type="text"
+          id="model"
+          name="model"
+          required
+          style="
+            padding: 12px;
+            border-radius: 0.5rem;
+            border: 1.5px solid #222;
+            background: #fafafa;
+            color: #111;
+          "
+          placeholder="e.g. Toyota Camry"
+        />
+      </div>
+      <div class="form-group input-field">
+        <label for="license_plate" style="color: #222; font-weight: 600"
+          >License Plate</label
+        >
+        <input
+          type="text"
+          id="license_plate"
+          name="license_plate"
+          required
+          style="
+            padding: 12px;
+            border-radius: 0.5rem;
+            border: 1.5px solid #222;
+            background: #fafafa;
+            color: #111;
+          "
+          placeholder="e.g. ABC-1234"
+        />
+      </div>
+      <div class="form-group input-field">
+        <label for="type" style="color: #222; font-weight: 600">Type</label>
+        <input
+          type="text"
+          id="type"
+          name="type"
+          required
+          style="
+            padding: 12px;
+            border-radius: 0.5rem;
+            border: 1.5px solid #222;
+            background: #fafafa;
+            color: #111;
+          "
+          placeholder="e.g. Sedan"
+        />
+      </div>
+      <div class="form-group input-field">
+        <label for="price_per_day" style="color: #222; font-weight: 600"
+          >Price per Day</label
+        >
+        <input
+          type="number"
+          id="price_per_day"
+          name="price_per_day"
+          min="0"
+          step="0.01"
+          required
+          style="
+            padding: 12px;
+            border-radius: 0.5rem;
+            border: 1.5px solid #222;
+            background: #fafafa;
+            color: #111;
+          "
+          placeholder="e.g. 15000"
+        />
+      </div>
+      <div class="form-group input-field">
+        <label for="image" style="color: #222; font-weight: 600"
+          >Image URL</label
+        >
+        <input
+          type="url"
+          id="image"
+          name="image"
+          style="
+            padding: 12px;
+            border-radius: 0.5rem;
+            border: 1.5px solid #222;
+            background: #fafafa;
+            color: #111;
+          "
+          placeholder="https://..."
+        />
+      </div>
+      <button
+        type="submit"
+        class="btn"
+        style="
+          margin-top: 0.5rem;
+          background: #111;
+          color: #fff;
+          border-radius: 0.5rem;
+          font-weight: 600;
+          padding: 12px 0;
+          border: none;
+        "
+      >
+        Add Car
+      </button>
+    </form>
+  </div>
+</section>
