@@ -1,66 +1,574 @@
-<section class="services-hero section bg-white" style="max-width:1100px; margin:2.5rem auto; padding:2.5rem; border-radius:1rem; background:#fff; box-shadow: 0 4px 20px rgba(0,0,0,0.06);"></section>
-  <div style="display:flex; align-items:center; justify-content:space-between; gap:1.5rem; flex-wrap:wrap;">
-    <div style="flex:1; min-width:260px;">
-      <h1 style="font-size:2rem; margin-bottom:0.5rem; color:#111;">Our Services</h1>
-      <p style="color:#444; font-size:1rem; line-height:1.6;">Flexible, transparent car rental services built for individuals and businesses. Select a service to learn more or start a booking.</p>
-    </div>
-    <div style="width:220px; height:120px; background:#f3f3f3; border-radius:0.75rem; display:flex; align-items:center; justify-content:center;">
-      <span style="color:#bbb; font-size:3rem;">🚗</span>
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+
+  .services-hero-new {
+    position: relative;
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 5rem 2.5rem;
+    background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+    border-radius: 2rem;
+    overflow: hidden;
+  }
+
+  .services-hero-new::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.1),
+      transparent
+    );
+    animation: shimmer 3s infinite;
+  }
+
+  .services-hero-new::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.1) 0%,
+      transparent 70%
+    );
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    animation: fadeInUp 1s ease-out;
+  }
+
+  .hero-title {
+    font-size: 4rem;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 1rem;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #fff 0%, #999 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-subtitle {
+    font-size: 1.3rem;
+    color: #ccc;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    line-height: 1.8;
+  }
+
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .stat-item {
+    text-align: center;
+    animation: fadeInUp 1s ease-out backwards;
+  }
+
+  .stat-item:nth-child(1) {
+    animation-delay: 0.2s;
+  }
+  .stat-item:nth-child(2) {
+    animation-delay: 0.4s;
+  }
+  .stat-item:nth-child(3) {
+    animation-delay: 0.6s;
+  }
+
+  .stat-number {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #fff;
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.9rem;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .services-grid {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .service-card-new {
+    background: #fff;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid #f0f0f0;
+    animation: fadeInUp 0.8s ease-out backwards;
+  }
+
+  .service-card-new:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .service-card-new:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .service-card-new:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  .service-card-new:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+
+  .service-card-new::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #000, #666, #000);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+  }
+
+  .service-card-new:hover::before {
+    transform: scaleX(1);
+  }
+
+  .service-card-new:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    border-color: #000;
+  }
+
+  .service-image-wrapper {
+    height: 220px;
+    overflow: hidden;
+    position: relative;
+    background: #000;
+  }
+
+  .service-image-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(0, 0, 0, 0.7) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .service-card-new:hover .service-image-wrapper::after {
+    opacity: 1;
+  }
+
+  .service-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .service-card-new:hover .service-image-wrapper img {
+    transform: scale(1.1);
+  }
+
+  .service-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: #000;
+    color: #fff;
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 2;
+  }
+
+  .service-content {
+    padding: 2rem;
+  }
+
+  .service-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #000;
+    margin-bottom: 1rem;
+    letter-spacing: -0.5px;
+  }
+
+  .service-description {
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .service-features {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+  }
+
+  .service-features li {
+    padding: 0.5rem 0;
+    color: #444;
+    font-size: 0.9rem;
+    position: relative;
+    padding-left: 1.5rem;
+  }
+
+  .service-features li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #000;
+    font-weight: 900;
+  }
+
+  .service-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .btn-primary {
+    flex: 1;
+    background: #000;
+    color: #fff;
+    padding: 1rem 1.5rem;
+    border-radius: 0.75rem;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+
+  .btn-primary:hover::before {
+    width: 300px;
+    height: 300px;
+  }
+
+  .btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .btn-secondary {
+    flex: 1;
+    background: #fff;
+    color: #000;
+    padding: 1rem 1.5rem;
+    border: 2px solid #000;
+    border-radius: 0.75rem;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 700;
+    transition: all 0.3s ease;
+  }
+
+  .btn-secondary:hover {
+    background: #000;
+    color: #fff;
+    transform: scale(1.05);
+  }
+
+  .cta-section {
+    max-width: 1200px;
+    margin: 5rem auto;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+    border-radius: 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(255, 255, 255, 0.03) 10px,
+      rgba(255, 255, 255, 0.03) 20px
+    );
+    animation: float 20s linear infinite;
+  }
+
+  .cta-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .cta-title {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
+  }
+
+  .cta-text {
+    font-size: 1.1rem;
+    color: #ccc;
+    margin-bottom: 2rem;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background: #fff;
+    color: #000;
+    padding: 1.2rem 3rem;
+    border-radius: 3rem;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .cta-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 15px 40px rgba(255, 255, 255, 0.3);
+  }
+
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+    }
+
+    .hero-stats {
+      gap: 1.5rem;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+    }
+
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-title {
+      font-size: 1.8rem;
+    }
+  }
+</style>
+
+<!-- Hero Section -->
+<section class="services-hero-new">
+  <div class="hero-content">
+    <h1 class="hero-title">Premium Services</h1>
+    <p class="hero-subtitle">
+      Experience excellence in every journey. From quick rentals to long-term
+      solutions, we deliver unmatched quality and flexibility tailored to your
+      needs.
+    </p>
+
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-number">500+</span>
+        <span class="stat-label">Vehicles</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">24/7</span>
+        <span class="stat-label">Support</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">10K+</span>
+        <span class="stat-label">Happy Clients</span>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="section" style="max-width:1100px; margin: 1rem auto 3rem;">
-  <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:20px;">
+<!-- Services Grid -->
+<section class="services-grid">
+  <!-- Short-term Rental -->
+  <article class="service-card-new">
+    <div class="service-image-wrapper">
+      <span class="service-badge">Popular</span>
+      <img
+        src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80"
+        alt="Short-term rental car"
+      />
+    </div>
+    <div class="service-content">
+      <h3 class="service-title">Short-term Rental</h3>
+      <p class="service-description">
+        Perfect for weekend getaways, business trips, or spontaneous adventures.
+        Rent by the day with complete flexibility.
+      </p>
+      <ul class="service-features">
+        <li>Flexible pickup & return</li>
+        <li>Daily & weekly rates</li>
+        <li>No hidden fees</li>
+      </ul>
+      <div class="service-actions">
+        <a href="/booking" class="btn-primary">Book Now</a>
+        <a href="/contact" class="btn-secondary">Details</a>
+      </div>
+    </div>
+  </article>
 
-    <article class="service-card" style="background:#fff; border-radius:0.8rem; padding:1.2rem; box-shadow:0 6px 18px rgba(0,0,0,0.04); position:relative; overflow:hidden;">
-      <div style="height:120px; background:#fafafa; border-radius:0.5rem; display:flex; align-items:center; justify-content:center; overflow:hidden;">
-        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=60" alt="Short-term rental car" style="max-height:100%; width:auto; object-fit:cover; display:block;" />
+  <!-- Long-term Leasing -->
+  <article class="service-card-new">
+    <div class="service-image-wrapper">
+      <span class="service-badge">Best Value</span>
+      <img
+        src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=80"
+        alt="Long-term lease"
+      />
+    </div>
+    <div class="service-content">
+      <h3 class="service-title">Long-term Leasing</h3>
+      <p class="service-description">
+        Extended rental plans with maintenance and insurance included. Ideal for
+        monthly commitments and extended stays.
+      </p>
+      <ul class="service-features">
+        <li>Monthly plans</li>
+        <li>Maintenance included</li>
+        <li>Insurance options</li>
+      </ul>
+      <div class="service-actions">
+        <a href="/contact" class="btn-primary">Explore Plans</a>
+        <a href="/contact" class="btn-secondary">Contact</a>
       </div>
-      <h3 style="margin-top:0.9rem; color:#111;">Short-term Rental</h3>
-      <p style="color:#666; font-size:0.95rem; line-height:1.5;">Rent a vehicle by the day with flexible pickup and return options — perfect for trips and short needs.</p>
-      <div style="display:flex; gap:0.6rem; margin-top:1rem;">
-        <a href="/booking" class="btn" style="background:#111; color:#fff; padding:8px 12px; border-radius:0.5rem; text-decoration:none;">Book Now</a>
-        <a href="/contact" style="color:#111; text-decoration:underline; align-self:center;">Contact</a>
-      </div>
-    </article>
+    </div>
+  </article>
 
-    <article class="service-card" style="background:#fff; border-radius:0.8rem; padding:1.2rem; box-shadow:0 6px 18px rgba(0,0,0,0.04); position:relative; overflow:hidden;">
-      <div style="height:120px; background:#fafafa; border-radius:0.5rem; display:flex; align-items:center; justify-content:center; overflow:hidden;">
-        <img src="https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?auto=format&fit=crop&w=1200&q=60" alt="Fleet cars" style="max-height:100%; width:auto; object-fit:cover; display:block;" />
+  <!-- Airport Pickup -->
+  <article class="service-card-new">
+    <div class="service-image-wrapper">
+      <span class="service-badge">Convenient</span>
+      <img
+        src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=1200&q=80"
+        alt="Airport pickup"
+      />
+    </div>
+    <div class="service-content">
+      <h3 class="service-title">Airport Pickup</h3>
+      <p class="service-description">
+        Seamless airport service with flight tracking. We'll be there when you
+        land, ready to get you on the road.
+      </p>
+      <ul class="service-features">
+        <li>Flight tracking</li>
+        <li>Meet & greet service</li>
+        <li>Fast checkout</li>
+      </ul>
+      <div class="service-actions">
+        <a href="/booking" class="btn-primary">Book Pickup</a>
+        <a href="/contact" class="btn-secondary">Info</a>
       </div>
-      <h3 style="margin-top:0.9rem; color:#111;">Corporate & Fleet</h3>
-      <p style="color:#666; font-size:0.95rem; line-height:1.5;">Custom contracts and fleet solutions for businesses — scalable pricing and priority support.</p>
-      <div style="display:flex; gap:0.6rem; margin-top:1rem;">
-        <a href="/contact" style="color:#111; text-decoration:underline; align-self:center;">Get a Quote</a>
-      </div>
-    </article>
-
-    <article class="service-card" style="background:#fff; border-radius:0.8rem; padding:1.2rem; box-shadow:0 6px 18px rgba(0,0,0,0.04); position:relative; overflow:hidden;">
-      <div style="height:120px; background:#fafafa; border-radius:0.5rem; display:flex; align-items:center; justify-content:center; overflow:hidden;">
-        <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=60" alt="Long-term lease" style="max-height:100%; width:auto; object-fit:cover; display:block;" />
-      </div>
-      <h3 style="margin-top:0.9rem; color:#111;">Long-term Leasing</h3>
-      <p style="color:#666; font-size:0.95rem; line-height:1.5;">Flexible long-term plans with maintenance and insurance options — ideal for monthly needs.</p>
-      <div style="display:flex; gap:0.6rem; margin-top:1rem;">
-        <a href="/contact" style="color:#111; text-decoration:underline; align-self:center;">Learn More</a>
-      </div>
-    </article>
-
-    <article class="service-card" style="background:#fff; border-radius:0.8rem; padding:1.2rem; box-shadow:0 6px 18px rgba(0,0,0,0.04); position:relative; overflow:hidden;">
-      <div style="height:120px; background:#fafafa; border-radius:0.5rem; display:flex; align-items:center; justify-content:center; overflow:hidden;">
-        <img src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=1200&q=60" alt="Airport pickup" style="max-height:100%; width:auto; object-fit:cover; display:block;" />
-      </div>
-      <h3 style="margin-top:0.9rem; color:#111;">Airport Pickup</h3>
-      <p style="color:#666; font-size:0.95rem; line-height:1.5;">Convenient airport pickup and drop-off with flight tracking so we're there when you land.</p>
-      <div style="display:flex; gap:0.6rem; margin-top:1rem;">
-        <a href="/booking" class="btn" style="background:#111; color:#fff; padding:8px 12px; border-radius:0.5rem; text-decoration:none;">Book Pickup</a>
-      </div>
-    </article>
-
-  </div>
+    </div>
+  </article>
 </section>
 
-<section style="max-width:1100px; margin:0 auto 4rem; text-align:center;">
-  <p style="color:#444;">Have a specific need? <a href="/contact" style="color:#111; text-decoration:underline;">Contact our team</a> and we'll tailor a solution.</p>
+<!-- CTA Section -->
+<section class="cta-section">
+  <div class="cta-content">
+    <h2 class="cta-title">Need Something Custom?</h2>
+    <p class="cta-text">
+      Our team specializes in creating tailored solutions for unique
+      requirements. Let's discuss your needs.
+    </p>
+    <a href="/contact" class="cta-button">Contact Our Team</a>
+  </div>
 </section>
