@@ -1,0 +1,511 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+:root {
+  --bg-color: #eee;
+  --bg-gray: #808080;
+  --main-color: blue;
+  --white-col: #fff;
+  --black-col: #000;
+  --success-col: rgb(20, 231, 55);
+  --error-col: #ff0000;
+}
+
+body {
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  background: var(--bg-color);
+}
+
+img {
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex {
+  display: flex;
+}
+
+footer {
+  background: var(--black-col);
+  color: var(--white-col);
+  text-align: center;
+  padding: 20px;
+}
+
+section {
+  position: relative;
+}
+
+.section {
+  padding: 20px 5%;
+}
+
+.bg-white {
+  background: var(--white-col);
+}
+
+.bg-black {
+  background: var(--black-col);
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 20px 0;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 5%;
+  background: var(--black-col);
+}
+.brand {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--white-col);
+}
+
+nav .nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav .nav-links a {
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 10px;
+  margin: 0 10px;
+  border-radius: 0.6rem;
+  color: var(--white-col);
+  transition: all 300ms ease;
+}
+
+nav .nav-links a:is(:hover, :focus) {
+  color: var(--black-col);
+  background: var(--white-col);
+}
+
+.hero {
+  background: var(--white-col);
+  overflow: hidden;
+  padding: 4rem 0;
+}
+
+.hero .container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 20px 5%;
+}
+
+.left-content {
+  flex-basis: 1;
+  max-width: 50%;
+}
+
+.heading {
+  font-size: 54px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.left-content .sub-heading {
+  font-size: 18px;
+}
+
+/* CTA BUTTONS */
+.cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.cta-buttons a,
+button {
+  font-size: 18px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 0.6rem;
+  transition: all 400ms ease;
+  box-shadow: 4px 4px 0.24rem rgba(0, 0, 0, 0.4);
+}
+
+.register-btn {
+  color: var(--white-col);
+  background: var(--black-col);
+}
+
+.login-btn {
+  font-size: 18px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 0.6rem;
+  background: var(--white-col);
+  color: var(--black-color);
+}
+
+/* RIGHT CONTENT */
+.right-content {
+  width: 50%;
+  position: relative;
+}
+
+.hero-image {
+  height: 300px;
+  width: 90%;
+  animation: hero-slide-zoom 5000ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+@keyframes hero-slide-zoom {
+  from {
+    transform: translateX(100%) scale(0.7);
+    opacity: 0.2;
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(-10%) scale(1.05);
+  }
+  to {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* FEATURED CARS */
+.grid {
+  display: grid;
+  gap: 10px;
+  margin-top: 5rem;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+}
+
+.car-card {
+  position: relative;
+  display: block;
+  border-radius: 0.5rem;
+  background: var(--white-col);
+  overflow: hidden;
+  margin: 10px;
+  transition: all 300ms ease-in-out;
+  box-shadow: 3px 3x 0.35rem rgba(0, 0, 0, 0.4);
+}
+
+.car-card:is(:hover, :focus) {
+  box-shadow: 10px 10px 0.35rem rgba(0, 0, 0, 0.4);
+}
+
+.car-details {
+  margin: 10px 0 10px 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.car-card:hover .car-details,
+.car-card:focus-within .car-details {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.car-details h3 {
+  margin-bottom: 5px;
+}
+
+.text-gray {
+  color: gray;
+  font-weight: 500;
+}
+
+.car-details p {
+  margin: 5px 0;
+  font-weight: 600;
+}
+
+.card-icon {
+  display: block;
+  width: 50px;
+  margin: 10px auto 20px;
+}
+
+.center-grid {
+  text-align: center !important;
+  margin-top: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+#choose-us h2 {
+  margin-bottom: 2rem;
+}
+
+.grid-2 div {
+  padding: 1rem 2.5rem;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cta-board {
+  padding: 4rem 0;
+  color: var(--white-col);
+}
+
+/* Register Form */
+.register-form {
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container {
+  display: flex;
+  width: 90%;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin: 2rem auto;
+}
+
+.left {
+  width: 50%;
+  height: 100%;
+  padding: 2rem;
+}
+
+.register-form img {
+  width: 50%;
+  object-fit: cover;
+}
+
+.input-field {
+  display: block;
+  margin: 10px 0;
+}
+
+.input-field label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.input-field input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: 3px solid #ccc;
+  border-radius: 0.66rem;
+}
+
+.register-form .register-btn {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.min-height {
+  height: 80vh;
+}
+
+/* dashboard  */
+.dashboard {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100vh;
+  align-items: start;
+  overflow: hidden;
+}
+
+.dashboard .brand {
+  color: var(--black-col);
+}
+
+.main-content {
+  width: 75%;
+  padding: 2rem;
+}
+
+.dashboard .sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 25%;
+  height: 100%;
+  padding: 20px;
+  background: var(--white-col);
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 2rem;
+  padding: 0;
+}
+
+.sidebar-nav li {
+  transition: background 200ms ease-in-out, transform 150ms ease;
+  border-radius: 0.5rem;
+  list-style: none;
+  background: transparent;
+  padding: 0; /* move padding to link so the whole area is clickable */
+}
+
+/* make the anchor fill the list item */
+.sidebar-nav li .sidebar-link {
+  color: var(--black-col);
+  font-size: 18px;
+  padding: 10px 14px;
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  border-radius: 0.5rem;
+}
+
+/* hover and keyboard focus styles */
+.sidebar-nav li:hover,
+.sidebar-nav li:focus-within {
+  background: var(--black-col);
+}
+
+.sidebar-nav li:hover .sidebar-link,
+.sidebar-nav li:focus-within .sidebar-link,
+.sidebar-nav li .sidebar-link:hover,
+.sidebar-nav li .sidebar-link:focus {
+  color: var(--white-col);
+}
+
+/* active state for current page */
+.sidebar-nav li.active {
+  background: var(--black-col);
+}
+.sidebar-nav li.active .sidebar-link {
+  color: var(--white-col);
+  font-weight: 700;
+}
+
+/* accessible focus ring */
+.sidebar-nav li .sidebar-link:focus {
+  outline: 2px solid rgba(0, 120, 255, 0.9);
+  outline-offset: 2px;
+}
+
+.logout-btn {
+  color: var(--white-col);
+  background: var(--error-col);
+  border: transparent;
+}
+
+/* Dashboard specific styles */
+.dash-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.dash-title h1 {
+  font-size: 1.75rem;
+  margin-bottom: 0.25rem;
+}
+.dash-title .muted {
+  color: #666;
+  font-size: 0.95rem;
+}
+.dash-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.search-wrap input {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+.filter-wrap select {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.stat-tiles {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+}
+.stat-tiles .tile {
+  background: var(--white-col);
+  padding: 16px;
+  border-radius: 8px;
+  flex: 1;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+}
+.stat-tiles .tile h3 {
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+  color: #444;
+}
+.stat-tiles .tile .big {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.vehicle-grid .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+/* Make main-content scrollable inside fixed height layout */
+.main-content {
+  overflow-y: auto;
+  height: calc(100vh - 40px);
+}
+
+@media (max-width: 900px) {
+  .dashboard {
+    flex-direction: column;
+  }
+  .dashboard .sidebar {
+    width: 100%;
+    height: auto;
+  }
+  .main-content {
+    width: 100%;
+    height: auto;
+  }
+  .stat-tiles {
+    flex-direction: column;
+  }
+}
+
+.logout-btn:is(:hover, :focus) {
+  background: var(--black-col);
+  color: var(--white-col);
+  cursor: pointer;
+}
+
+.dashboard-stats {
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: 600;
+}
